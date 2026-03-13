@@ -1,0 +1,13 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+import controller.BooksaleController;
+
+public class BooksaleInsert {
+	BooksaleController controller = BooksaleController.getInstance();
+	
+	public void insert(Scanner sc) {
+		
+	}
+}

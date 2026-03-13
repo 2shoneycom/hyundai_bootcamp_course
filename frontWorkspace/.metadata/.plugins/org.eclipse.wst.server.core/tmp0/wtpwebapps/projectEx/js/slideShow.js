@@ -1,0 +1,59 @@
+/**
+ * slideShow.js
+ */
+
+$(function() {
+	let $slideImages = $('#slidePanel > img');
+	let moveIndex = parseInt(Math.random() * $slideImages.length);
+	$('#slidePanel').css('left', `-${moveIndex * 1280}px`);
+
+	function moveSlide(index) {
+		moveIndex = index;
+
+		let moveLeft = -(index * 1280);
+		$('#slidePanel').animate({ 'left': moveLeft }, 'slow');
+		
+
+		$('.controlButton').each(function(index) {
+			if (index == moveIndex) {
+				$(this).attr('src', 'image/controlButton2.png');
+			} else {
+				$(this).attr('src', 'image/controlButton1.png');
+			}
+		})
+	}
+
+	$('#prevButton').on('click', function() {
+		if (moveIndex > 0) {
+			moveSlide(moveIndex - 1);
+		}
+	});
+
+	$('#nextButton').on('click', function() {
+		if (moveIndex < $slideImages.length - 1) {
+			moveSlide(moveIndex + 1);
+		}
+	});
+
+	// 컨트롤 패널
+	$('.controlButton').each(function(index) {
+		if (index == moveIndex) {
+			$(this).attr('src', 'image/controlButton2.png');
+		}
+		$(this).hover(
+			// mouseenter
+			function() {
+				if (index != moveIndex) $(this).attr('src', 'image/controlButton2.png');
+			},
+			// mouseleave
+			function() {
+				if (index != moveIndex) $(this).attr('src', 'image/controlButton1.png');
+			}
+		);
+		$(this).on('click', function() {
+			moveSlide(index);
+		});
+	});
+
+
+});

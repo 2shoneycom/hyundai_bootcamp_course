@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <script type="text/javascript">
+  	var posNumCount = 0;
+  	var negNumCount = 0;
+  	var zeroCount = 0;
+  	
+  	for (i = 1; i <= 10; i++) {
+  		var input = Number(prompt(`숫자${i} 입력:`));
+  		
+  		if (input > 0) {
+  			posNumCount++;
+  		}
+  		else if (input < 0) {
+  			negNumCount++;
+  		}
+  		else {
+  			zeroCount++;
+  		}
+  	}
+  	
+  	document.write("양수의 개수 : " + posNumCount + "<br>");
+  	document.write("음수의 개수 : " + negNumCount + "<br>");
+  	document.write("0의 개수 : " + zeroCount + "<br>");
+  </script>
+</head>
+<body>
+	
+</body>
+</html>

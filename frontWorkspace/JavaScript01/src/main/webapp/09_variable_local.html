@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>지역변수</title>
+		<script type="text/javascript">
+			function f1() {
+				var l1 = 100;
+			}
+			
+			function f2() {
+				var l2 = 200;
+				g = 300;
+			}
+
+			f1();
+			f2();
+
+			document.write("g: " + g + "<br>");
+			document.write("l1: " + l1 + "<br>");
+			document.write("l2: " + l2 + "<br>");
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

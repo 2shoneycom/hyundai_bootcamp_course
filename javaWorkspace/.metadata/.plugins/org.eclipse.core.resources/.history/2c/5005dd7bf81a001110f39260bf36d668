@@ -1,0 +1,65 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+import clientView.ClientLogin;
+import view.BookDelete;
+import view.BookInsert;
+import view.BookList;
+import view.BookUpdate;
+import view.ResultView;
+
+public class MainView {
+
+	public static void main(String[] args) {
+		// 메뉴 생성
+		Scanner sc = new Scanner(System.in);
+
+		ClientLogin login = new ClientLogin();
+
+		if (login.login(sc)) {
+			ResultView.succMsg("로그인 되었습니다");
+			while (true) {
+				System.out.println("===============도서관리 프로그램=============");
+				System.out.println("1. 도서 구매");
+				System.out.println("2. 구매 내역 조회");
+				System.out.println("3. 구매 내역 수정");
+				System.out.println("4. 구매 내역 삭제");
+				System.out.println("5. 종료(로그아웃)");
+				System.out.println("========================================");
+
+				System.out.println("메뉴 번호 입력 : ");
+				String menuNum = sc.nextLine();
+				switch (menuNum) {
+				case "1":
+					BooksaleInsert bsis = new BooksaleInsert();
+					bsis.insert(sc);
+					break;
+				case "2":
+					BooksaleList bsls = new BooksaleList();
+					bsls.getAllBooksale();
+					break;
+				case "3":
+					BooksaleUpdate bsuv = new BooksaleUpdate();
+					bsuv.update(sc);
+					break;
+				case "4":
+					BooksaleDelete bsdb = new BooksaleDelete();
+					bsdv.delete(sc);
+					break;
+				case "5":
+					System.out.println("-------------------------");
+					System.out.println("종료합니다");
+					System.out.println("-------------------------");
+					sc.close();
+					System.exit(0);
+				default:
+					System.out.println("잘못 입력하였습니다");
+				}
+			}
+		} else {
+			ResultView.errorMsg("로그인 실패");
+		}
+	}
+
+}

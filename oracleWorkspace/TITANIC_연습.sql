@@ -1,0 +1,152 @@
+-- 타이타닉 데이터를 활용한 SELECT 연습
+
+-- 생존(1)/사망(0) 컬럼의 값을 확인: 생존/사망 외에 다른 값은 없음
+SELECT DISTINCT SURVIVED FROM TITANIC;
+-- 성별 확인 (male/female)
+SELECT DISTINCT SEX FROM TITANIC;
+
+-- 데이터를 통해 데이터 구조 확인: 상위 10에 나타나는 데이터를 확인 작업
+SELECT *
+FROM TITANIC
+WHERE ROWNUM <= 10;
+
+-- 나이의 범위
+SELECT MAX(AGE) 최고연령, MIN(AGE) 최저연령
+FROM TITANIC;
+
+-- 승객의 수를 확인하기 위해 PASSENGERID를 사용
+-- 중복값이 있는지 확인 - 중복 없음
+SELECT COUNT(PASSENGERID) "승객수(중복포함)",
+    COUNT(DISTINCT PASSENGERID) "승객수(중복제거)"
+FROM TITANIC;
+
+-- 나이(연령) 데이터를 활용한 생존 분석
+-- 연령 데이터 정리 후 생존과의 관계 확인
+-- AGEBAND: 10년 구간
+-- 62세 60대
+
+-- 가공필드가 포함된 질의를 인라인뷰서브쿼리로 활용
+-- 오라클은 셀렉트된 칼럼을 GROUP BY 조건으로 활용 불가능
+SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, PASSENGERID
+FROM TITANIC;
+
+-- 연령대별 탑승객 수 확인
+-- 80대 1명, 70대 6명 -> 샘플이 적기 때문에 생존과의 관계 데이터 무의미
+-- 20대, 30대 탑승객수가 가장 많다
+-- 미성년자 탑승객수도 어느 정도 차지함 -> 가족단위 탑승이 많았다?
+SELECT AGEBAND, COUNT(PASSENGERID)
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, PASSENGERID
+    FROM TITANIC)
+GROUP BY AGEBAND
+ORDER By AGEBAND;
+
+-- 연령대별 생존자수
+-- 탑승객수가 가장많은 연령대가 20대도 생존자수도 가장 많음
+SELECT AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, PASSENGERID
+    FROM TITANIC)
+GROUP BY AGEBAND
+ORDER By AGEBAND;
+
+-- 연령대별 생존자수와 생존율
+-- 탑승객수가 가장많은 연령대가 20대도 생존자수도 가장 많음
+SELECT AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, PASSENGERID
+    FROM TITANIC)
+GROUP BY AGEBAND
+ORDER By AGEBAND;
+
+-- 연령대와 성별에 따른 생존과의 고나계
+-- 연령대는 가공컬럼이므로 인라인뷰를 사용해야함
+
+-- 연령대와 성별에 따른 탑승객 수, 생존자 수, 생존율
+SELECT SEX, AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID
+        FROM TITANIC)
+GROUP BY AGEBAND, SEX
+ORDER BY SEX;
+
+------------------ 위 결과에서 성별 동일 연령대의 차이를 확인해보고자 하면 -------------------
+-- 남성과 여성에 대한 연령대별 생존율 테이블 구성
+-- 남성의 연령대별 생존율
+SELECT SEX, AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID
+        FROM TITANIC)
+-- WHERE SEX  ='male'
+GROUP BY AGEBAND, SEX
+HAVING SEX = 'male'
+ORDER BY SEX;
+
+-- 여성의 연령대별 생존율
+SELECT SEX, AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID
+        FROM TITANIC)
+-- WHERE SEX  ='male'
+GROUP BY AGEBAND, SEX
+HAVING SEX = 'female'
+ORDER BY SEX;
+
+-- 위에서 확인한 두 View를 조인해서 생존율 비교
+SELECT A.AGEBAND, A.생존율, B.생존율, A.생존율 - B.생존율 "연령대별 생존율 차이"
+FROM ( -- 남성의 연령대별 생존율 VIEW
+        SELECT SEX, AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+        FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID
+                FROM TITANIC)
+        GROUP BY AGEBAND, SEX
+        HAVING SEX = 'male'
+    ) A 
+    LEFT JOIN ( -- 여성의 연령대별 생존율 VIEW
+        SELECT SEX, AGEBAND, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+        FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID
+                FROM TITANIC)
+        GROUP BY AGEBAND, SEX
+        HAVING SEX = 'female'
+    ) B
+    ON A.AGEBAND = B.AGEBAND
+ORDER BY AGEBAND;
+
+-- 객실 등급과 생존율 사이의 관계 정리
+
+-- 1, 2, 3 등급이 존재 
+SELECT PCLASS, COUNT(PASSENGERID) 승객수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM TITANIC
+GROUP BY PCLASS
+ORDER BY PCLASS;
+
+-- 객실 등급과 성별을 조합해 생존율 확인
+SELECT SEX 성별, PCLASS 객실등급, COUNT(PASSENGERID) 승객수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM TITANIC
+GROUP BY PCLASS, SEX
+ORDER BY SEX, PCLASS;
+
+-- 연습문제
+-- 객실 등급과 성별/연령대에 따른 생존율 관계 확인
+SELECT SEX 성별, PCLASS 객실등급, AGEBAND 연령대, COUNT(PASSENGERID) 탑승자수, SUM(SURVIVED) 생존자수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM (SELECT FLOOR(AGE/10)*10 AGEBAND, AGE, SURVIVED, SEX, PASSENGERID, PCLASS
+        FROM TITANIC)
+GROUP BY SEX, AGEBAND, PCLASS
+ORDER BY AGEBAND;
+
+-- 질의 결과에 따른 해석 추가
+/*
+    1. 기본적으로 여성과 아이의 생존률이 성인 남성에 비해 월등히 높음
+    2. 같은 성별, 연령대 내에서 객실 등급이 높은 사람일 수록 생존률이 높음
+*/
+
+
+-- TITANIC2 테이블 확인
+SELECT * FROM TITANIC2;
+DESCRIBE TITANIC2; -- 승객들의 거주지
+
+-- 홈타운별 탑승객 수 및 생존율
+SELECT HOMETOWN, COUNT(PASSENGERID) 탑승객수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM TITANIC2
+GROUP BY HOMETOWN;
+
+-- 홈타운별 탑승객 수가 10명 이상이면서 생준율이 50% 이상인 홈타운
+SELECT HOMETOWN, COUNT(PASSENGERID) 탑승객수, ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) 생존율
+FROM TITANIC2
+GROUP BY HOMETOWN
+HAVING COUNT(PASSENGERID) >= 10 AND ROUND(SUM(SURVIVED)/COUNT(PASSENGERID)*100, 2) >= 50
+ORDER BY 생존율;
+-- 결과 -> HOME TOWN이 정형화 되어있지 않음 (같은 지역도 다르게 기록되어 있음)

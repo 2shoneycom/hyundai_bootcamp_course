@@ -1,0 +1,28 @@
+package booksaleView;
+
+import java.util.Vector;
+
+import controller.BooksaleController;
+import model.BookDTO;
+import model.BooksaleDTO;
+
+public class BooksaleList {
+	BooksaleController controller = BooksaleController.getInstance();
+	
+	public void getAllBook() {
+		controller.getAllBooksale();
+	}
+	
+	public static void showAllBooksale(Vector<BooksaleDTO> dataSet) {
+		System.out.println("\n*******************************");
+		System.out.println("도서 구매 내역 조회");
+		System.out.println("*********************************");
+		
+		System.out.println("도서번호\t 도서명\t\t  저자\t\t 가격\t\t 발행일\t\t 재고 \t출판사번호");
+		System.out.println("--------------------------------------------");
+		
+		for (BooksaleDTO dto : dataSet) {
+			System.out.println(dto);
+		}
+	}
+}

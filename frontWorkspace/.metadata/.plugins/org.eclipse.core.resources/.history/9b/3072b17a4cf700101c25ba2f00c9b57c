@@ -1,0 +1,25 @@
+/* common.css */
+@charset "UTF-8";
+
+* {
+  margin: 0 auto;
+}
+
+#wrap {
+  width: 1280px;
+  background-color: #eeeeee;
+  text-align: center;
+  position: relative;
+}
+
+img {
+  border: 0; margin: 0;
+}
+
+/****** Footer ******/
+#footerBox div {
+  background: #777777;
+  border: solid 1px #999999;
+  padding: 20px;
+  margin: 0;
+}

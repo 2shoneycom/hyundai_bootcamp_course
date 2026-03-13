@@ -1,0 +1,46 @@
+package secure.sec01;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class StudentInjectMainFilter {
+	public static void main(String[] args) {
+		// DB 연결
+		DBConnect dbCon = new DBConnect();
+		Connection con = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+			// 보안 대책 2. 문자열 필터링
+			
+			System.out.println("학생 번호 입력: ");
+			String stdNo = sc.nextLine();
+			System.out.println(stdNo);
+			
+			// 입력 검증
+			
+			// select 쿼리문 작성: 입력된 학생 번호에 대한 정보를 출력
+			String sql = "SELECT * FROM student WHERE stdNo='" + stdNo + "'"; // 보안 취약 (PreparedStatement 미사용, 일반 쿼리 문자열 직접 작성)
+			System.out.println(sql);
+			
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			
+			while(rs.next()) {
+				stdNo = rs.getString(1);
+				String stdName = rs.getString(2);
+				int stdYear = rs.getInt(3);
+				System.out.printf("%s\t\t%s\t\t%s\n", stdNo, stdName, stdYear);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+		sc.close();
+	}
+}

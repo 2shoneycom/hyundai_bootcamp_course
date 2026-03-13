@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;jQuery01/src/main/webapp/12_event_image_resize.html&apos; to &apos;image_resize.html&apos;" description="Rename resource &apos;12_event_image_resize.html&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/main/webapp/12_event_image_resize.html" name="image_resize.html" stamp="1768819100006" updateReferences="true"/>
-</session>

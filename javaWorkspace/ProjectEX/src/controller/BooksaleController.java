@@ -1,0 +1,90 @@
+package controller;
+
+import java.util.Vector;
+
+import booksaleView.BooksaleList;
+import model.BooksaleDAO;
+import model.BooksaleDTO;
+import model.IBooksaleDAO;
+import view.ResultView;
+
+public class BooksaleController {
+	private static BooksaleController instance = new BooksaleController();
+	IBooksaleDAO dao = new BooksaleDAO();
+	
+	private BooksaleController() {}
+	
+	public static BooksaleController getInstance() {
+		return instance;
+	}
+	
+	public void insert(BooksaleDTO newDTO) {
+		try {
+			BooksaleDTO dto = new BooksaleDTO();
+			
+			dto.setBsNo(newDTO.getBsNo());
+			dto.setBsDate(newDTO.getBsDate());
+			dto.setBsQty(newDTO.getBsQty());
+			dto.setClientNo(newDTO.getClientNo());
+			dto.setBookNo(newDTO.getBookNo());
+			
+			if (dao.insert(dto)) {
+				ResultView.succMsg("도서 구매 내역이 등록되었습니다");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResultView.errorMsg("도서 구매 오류");
+		}
+	}
+	
+	public void getAllBooksale() {
+		try {
+			Vector<BooksaleDTO> dataSet = dao.getAllBooksale();
+			
+			if (dataSet.size() > 0) {
+				BooksaleList.showAllBooksale(dataSet);
+			} else {
+				ResultView.succMsg("도서 구매 내역이 없습니다");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResultView.errorMsg("도서 구매 내역 조회중 오류 발생");
+		}
+	}
+	
+	public void update(BooksaleDTO newDTO) {
+		try {
+			BooksaleDTO dto = new BooksaleDTO();
+			
+			dto.setBsNo(newDTO.getBsNo());
+			dto.setBsDate(newDTO.getBsDate());
+			dto.setBsQty(newDTO.getBsQty());
+			dto.setClientNo(newDTO.getClientNo());
+			dto.setBookNo(newDTO.getBookNo());
+			
+			if (dao.update(dto)) {
+				ResultView.succMsg("도서 구매 내역이 수정되었습니다.");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResultView.errorMsg("도서 구매 내역 수정 중 오류 발생");
+		}
+	}
+	
+	public void delete(String bsNo) {
+		try {
+			BooksaleDTO dto = new BooksaleDTO();
+			
+			dto.setBsNo(bsNo);
+			
+			if (dao.delete(dto)) {
+				ResultView.succMsg("구매내역 (" + bsNo + ") 삭제 성공");
+			} else {
+				ResultView.succMsg("구매내역 (" + bsNo + ")가 존재하지 않습니다");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResultView.errorMsg("도서 구매 내역 삭제 중 오류 발생");
+		}
+	}
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>CSS:float/clear 속성</title>
+  <style>
+    #menu, #menu2 {
+      list-style: none;
+    }
+    #menu li {
+      float: left;
+    }
+    #p1 {
+      clear: both;
+    }
+    
+    #menu2 li {
+      float: left;
+    }
+    #menu2::after {
+      display: block;
+      content: '';
+      clear: both;
+    }
+    #p2 {
+      padding: 10px;
+    }
+    
+    #menu3 {
+      list-style:none;
+      padding:0;
+    }
+    #menu3 li {
+      float: left;
+    }
+  
+  </style>
+</head>
+<body>
+  <div>
+    <ul id="menu">
+    	<li>메뉴1</li> <!-- 여기에 float이 적용되어 있을 때 -->
+    	<li>메뉴2</li> <!-- 여기에 float이 적용되어 있을 때 -->
+    	<li>메뉴3</li> <!-- 여기에 float이 적용되어 있을 때 -->
+    </ul>
+    <p id="p1">메뉴 아래에 위치하는 내용</p> <!-- 이것도 float이 영향을 미침 -->
+  </div>
+  <hr>
+  <div>
+    <ul id="menu2">
+      <li>메뉴1</li> <!-- 여기에 float이 적용되어 있을 때 -->
+      <li>메뉴2</li> <!-- 여기에 float이 적용되어 있을 때 -->
+      <li>메뉴3</li> <!-- 여기에 float이 적용되어 있을 때 -->
+    </ul>
+    <p id="p2">메뉴 아래에 위치하는 내용</p> <!-- 이것도 float이 영향을 미침 -->
+  </div>
+  <hr>
+  <div>
+    <ul id="menu3">
+      <li>메뉴1</li> <!-- 여기에 float이 적용되어 있을 때 -->
+      <li>메뉴2</li> <!-- 여기에 float이 적용되어 있을 때 -->
+      <li>메뉴3</li> <!-- 여기에 float이 적용되어 있을 때 -->
+    </ul>
+    <p id="p3">메뉴 아래에 위치하는 내용</p> <!-- 이것도 float이 영향을 미침 -->
+  </div>
+</body>
+</html>

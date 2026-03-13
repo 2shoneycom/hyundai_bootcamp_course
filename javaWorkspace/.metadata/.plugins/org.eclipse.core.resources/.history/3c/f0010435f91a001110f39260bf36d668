@@ -1,0 +1,120 @@
+package model;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Vector;
+
+import util.DBConnect;
+
+public class BooksaleDAO implements IBooksaleDAO {
+
+	@Override
+	public boolean insert(BooksaleDTO dto) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null; 
+		
+		// 1. 구매 내역 등록
+		String sql = "INSERT INTO booksale VALUES(?,?,?,?,?)";
+		
+		con = DBConnect.getConnection();
+		pstmt = con.prepareStatement(sql);
+		
+		pstmt.setString(1, dto.getBsNo());
+		pstmt.setString(2,  dto.getBsDate());
+		pstmt.setInt(3, dto.getBsQty());
+		pstmt.setString(4, dto.getClientNo());
+		pstmt.setString(5, dto.getBookNo());
+		
+		int result1 = pstmt.executeUpdate();
+		
+		// 2. 구매한 도서 book 테이블에서 수량 감소
+        String sql2 = "UPDATE book SET bookStock = bookStock - ? WHERE bookNo = ?";
+        pstmt = con.prepareStatement(sql2);
+        pstmt.setInt(1, dto.getBsQty());
+        pstmt.setString(2, dto.getBookNo());
+        int result2 = pstmt.executeUpdate();
+		
+		if (result1 > 0 && result2 > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public Vector<BooksaleDTO> getAllBooksale() throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Vector<BooksaleDTO> dataSet = null;
+		
+		String sql = "SELECT * FROM booksale order by bsNo";
+		
+		con = DBConnect.getConnection();
+		pstmt = con.prepareStatement(sql);
+
+		rs = pstmt.executeQuery();
+
+		dataSet = new Vector<BooksaleDTO>();
+		
+		while (rs.next()) {
+			dataSet.add(new BooksaleDTO(rs.getString(1), rs.getString(2),
+					rs.getInt(3), rs.getString(4), rs.getString(5)));
+		}
+		
+		DBConnect.close(con, pstmt, rs);
+		
+		return dataSet;
+	}
+
+	@Override
+	public boolean update(BooksaleDTO dto) throws Exception {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		con = DBConnect.getConnection();
+		String sql = "UPDATE booksale SET bsDate=?,"
+				+ "bsQty=?, clientNo=?, bookNo=? WHERE bsNo=?";
+		
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getBsDate());
+		pstmt.setInt(2, dto.getBsQty());
+		pstmt.setString(3, dto.getClientNo());
+		pstmt.setString(4, dto.getBookNo());
+		pstmt.setString(5, dto.getBsNo());
+		
+		int result = pstmt.executeUpdate();
+		
+		DBConnect.close(con, pstmt);
+		
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean delete(BooksaleDTO dto) throws Exception {
+		Connection con = DBConnect.getConnection();
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM booksale WHERE bsNo=?";
+		
+		pstmt = con.prepareStatement(sql);
+		pstmt.setString(1, dto.getBsNo());
+		
+		int result = pstmt.executeUpdate();
+		
+		DBConnect.close(con, pstmt);
+		
+		if (result > 0) {
+			return true;
+		} else {
+			return false;
+		}
+		return false;
+	}
+
+}

@@ -1,0 +1,72 @@
+package secure.sec01;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+import java.util.regex.*;
+
+public class StudentInjectMainFilter {
+	public static void main(String[] args) {
+		// DB 연결
+		DBConnect dbCon = new DBConnect();
+		Connection con = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+
+		Pattern pattern = Pattern.compile("[^a-zA-Z0-9]|select|delete|insert|order by|create|alter|drop|all|union"); // 필터링할
+																														// 문구(정규식)를
+																														// 문자열로
+																														// 전달
+																														// [^a-zA-Z0-9]
+																														// ->
+																														// 특수
+																														// 문자
+		Matcher matcher = null; // 필터링 패턴과 매칭시 사용할 참조 변수
+
+		try {
+			// 보안 대책 2. 문자열 필터링
+
+			System.out.println("학생 번호 입력: ");
+			String stdNo = sc.nextLine();
+			System.out.println(stdNo);
+
+			// 입력 검증
+			matcher = pattern.matcher(stdNo.toLowerCase()); // 전부 소문자로 바꿔서 검증 시작
+
+			boolean match = true;
+			matcher.find(); // 설정한 정규식 패턴과 전달된 문자열이 매칭되면 true 반환
+			while (matcher.find()) {
+				match = false; // 입력된 문자가 필터링 됨
+				break;
+			}
+			System.out.println(match);
+
+			if (match) {
+				// select 쿼리문 작성: 입력된 학생 번호에 대한 정보를 출력
+				String sql = "SELECT * FROM student WHERE stdNo='" + stdNo + "'"; // 보안 취약 (PreparedStatement 미사용, 일반 쿼리
+																					// 문자열 직접 작성)
+				System.out.println(sql);
+
+				pstmt = con.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					stdNo = rs.getString(1);
+					String stdName = rs.getString(2);
+					int stdYear = rs.getInt(3);
+					System.out.printf("%s\t\t%s\t\t%s\n", stdNo, stdName, stdYear);
+				}
+			}
+			else {
+				System.out.println("잘못된 요청입니다");
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		sc.close();
+	}
+}

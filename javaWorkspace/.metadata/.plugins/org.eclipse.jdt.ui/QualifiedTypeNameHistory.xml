@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="ch07.calc.Subtract"/>
+    <fullyQualifiedTypeName name="ch07.calc.Multiply"/>
+    <fullyQualifiedTypeName name="exPackage.game_project.info.AppInfo"/>
+    <fullyQualifiedTypeName name="exPackage.game_project.game.GaBaBo"/>
+    <fullyQualifiedTypeName name="exPackage.game_project.game.Guess"/>
+    <fullyQualifiedTypeName name="ch08.sub_p.Manager"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.Map.Entry"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.sql.Statement"/>
+    <fullyQualifiedTypeName name="view.BookList"/>
+    <fullyQualifiedTypeName name="java.sql.Date"/>
+    <fullyQualifiedTypeName name="controller.ClientController"/>
+    <fullyQualifiedTypeName name="model.ClientDTO"/>
+    <fullyQualifiedTypeName name="java.util.Date"/>
+    <fullyQualifiedTypeName name="view.ResultView"/>
+    <fullyQualifiedTypeName name="util.DBConnect"/>
+    <fullyQualifiedTypeName name="controller.BookController"/>
+    <fullyQualifiedTypeName name="controller.BooksaleController"/>
+    <fullyQualifiedTypeName name="booksaleView.BooksaleList"/>
+</qualifiedTypeNameHistroy>

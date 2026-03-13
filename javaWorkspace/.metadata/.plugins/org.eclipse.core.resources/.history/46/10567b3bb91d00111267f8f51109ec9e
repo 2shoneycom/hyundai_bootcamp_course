@@ -1,0 +1,11 @@
+package secure.sec01;
+
+import java.sql.Connection;
+
+public class StudentInjectMain {
+	public static void main(String[] args) {
+		// DB 연결
+		DBConnect dbCon = new DBConnect();
+		Connection con = dbCon.getConnection();
+	}
+}

@@ -1,0 +1,18 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+import controller.BooksaleController;
+
+public class BooksaleInsert {
+	BooksaleController controller = BooksaleController.getInstance();
+	
+	public void insert(Scanner sc) {
+		String bsNo, bsDate, clientNo, bookNo;
+		int bsQty;
+		
+		System.out.println("\n*************************");
+		System.out.println("도서 구매");
+		System.out.println("***************************");
+	}
+}

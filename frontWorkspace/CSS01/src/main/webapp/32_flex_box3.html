@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>플렉서블 박스-플렉서블 아이템 추가-방향(column)</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    width: 500px;
+    height: 300px;
+    border: solid 1px black;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .container div {
+    width: 20%;
+    height: 10%;
+  }
+  
+  .container div:first-child {
+    background: red;
+  }
+  .container div:nth-child(2) {
+    background: blue;
+  }
+  .container div:nth-child(3) {
+    background: yellow;
+  }
+	
+</style>
+</head>
+<body>
+			<div class="container">
+				<div></div><div></div><div></div>
+			</div>
+			
+			<div class="container">
+				<div></div><div></div><div></div>
+			</div>			
+</body>
+</html>

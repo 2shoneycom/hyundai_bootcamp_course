@@ -1,0 +1,26 @@
+package controller;
+
+import model.BooksaleDTO;
+import view.ResultView;
+
+public class BooksaleController {
+	private static BooksaleController instance = new BooksaleController();
+	
+	private BooksaleController() {}
+	
+	public static BooksaleController getInstance() {
+		return instance;
+	}
+	
+	public void insert(BooksaleDTO newDTO) {
+		try {
+			BooksaleDTO dto = new BooksaleDTO();
+			
+			// 근데 book에 있는 책만 넣어야 하잖아.
+			// 또 구매한 건 book에서 수량 감소 시켜야되고
+		} catch (Exception e) {
+			e.printStackTrace();
+			ResultView.errorMsg("도서 구매 오류");
+		}
+	}
+}

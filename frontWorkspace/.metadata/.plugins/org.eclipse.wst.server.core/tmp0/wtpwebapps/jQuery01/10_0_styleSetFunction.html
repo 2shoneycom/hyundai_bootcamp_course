@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		// 객체 추가
+		let output = '';
+		for (let i = 0; i < 256; i++) {
+			output += '<div></div>';
+		}
+		document.body.innerHTML = output;
+		
+		// 스타일 적용
+		$('div').css({
+			height: 2,
+			background: function(i) {
+				return `rgb(${i}, ${i}, ${i})`;
+			}
+		})
+	});
+</script>
+</head>
+<body>
+
+</body>
+</html>

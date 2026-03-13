@@ -1,0 +1,12 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+public class MainView {
+
+	public static void main(String[] args) {
+		// 메뉴 생성
+		Scanner sc = new Scanner(System.in); 
+	}
+
+}

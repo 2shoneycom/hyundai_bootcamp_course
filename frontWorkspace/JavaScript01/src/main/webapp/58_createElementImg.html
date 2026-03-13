@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>createElement('img') 예제</title>
+<script type="text/javascript">
+	window.onload = function() {
+		//1단계: 요소 노드 생성
+		// 요소 노드(<img> 태그) 생성하고 변수에 지정 
+		let img = document.createElement('img');
+
+		//속성 설정
+		img.src = "image/bird.jpg";
+		img.style.width = "400px";
+		img.height = 180;
+		img.title = "예쁜새";
+
+		//2단계 : 문서에 출력
+		document.body.appendChild(img);
+	};
+</script>
+</head>
+
+<body>
+</body>
+</html>

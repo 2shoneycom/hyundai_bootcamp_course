@@ -1,0 +1,10 @@
+/**
+ * index.js
+ */
+
+$(function() {
+	// 브라우저 scroll 이벤트 - 윈도우객체
+	$(window).on('scroll', function() {
+		if ($(document.scrollTop()))
+	});
+});

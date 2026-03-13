@@ -1,6 +1,12 @@
-*/bin/
+/algorithm
+
+/*/bin/
 /bin/
-*/build/
+/*/build/
 /build/
 /.settings/
-*/.settings/
+/*/.settings/
+node_modules
+react_workspace
+build
+.settings

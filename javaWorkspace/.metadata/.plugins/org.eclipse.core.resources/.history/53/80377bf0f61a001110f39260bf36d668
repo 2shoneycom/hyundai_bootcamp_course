@@ -1,0 +1,46 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+import controller.BooksaleController;
+import model.BooksaleDTO;
+
+public class BooksaleUpdate {
+	BooksaleController controller = BooksaleController.getInstance();
+
+	public void update(Scanner sc) {
+		String bsNo, bsDate, clientNo, bookNo; 
+		int bsQty;
+
+		System.out.println("\n*************************");
+		System.out.println("도서 구매 내역 수정");
+		System.out.println("***************************");
+
+		BooksaleList bsls = new BooksaleList();
+		bsls.getAllBooksale();
+
+		System.out.print("수정할 구매번호 입력 : ");
+		bsNo = sc.nextLine();
+
+		System.out.print("구매일 입력 : ");
+		bsDate = sc.nextLine();
+
+		System.out.print("구매 수량 입력 : ");
+		bsQty = Integer.parseInt(sc.nextLine());
+
+		System.out.print("회원 번호 입력: ");
+		clientNo = sc.nextLine();
+
+		System.out.print("발행일 입력 : ");
+		bookDate = sc.nextLine();
+
+		System.out.print("도서재고 입력 : ");
+		bookStock = Integer.parseInt(sc.nextLine());
+
+		System.out.print("출판사번호 입력 : ");
+		pubNo = sc.nextLine();
+		System.out.println("***************************");
+
+		controller.update(new BookDTO(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock, pubNo));
+	}
+}

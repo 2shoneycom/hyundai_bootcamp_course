@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+let input1 = prompt("첫 번째 값을 입력하시오");
+let input2 = prompt("두 번째 값을 입력하시오");
+
+// 입력 받은 값의 숫자형 확인 절차
+let isNum1 = true;
+let isNum2 = true;
+for (let i = 0; i < input1.length; i++) {
+	if (!(input1.charAt(i) >= '0' && input1.charAt(i) <= '9')) {
+		isNum1 = false;
+	}
+}
+for (let i = 0; i < input2.length; i++) {
+	if (!(input2.charAt(i) >= '0' && input2.charAt(i) <= '9')) {
+		isNum2 = false;
+	}
+}
+
+// 결과 출력
+if (isNum1 && isNum2) {
+	// 두 입력 모두 숫자형이면 합 출력
+	document.write("두 값의 합은 ", (Number(input1)+Number(input2)));
+}
+else {
+	// 그렇지 않으면 문자열의 결합 출력
+	document.write("두 문자열의 결합: ", (input1+input2));
+}
+
+document.write("<hr>");
+
+let appleIndex = prompt("문장을 입력하시오").indexOf("apple");
+if (appleIndex != -1) {
+	document.write("apple이 idx[" + appleIndex + "]에 있습니다");
+}
+</script>
+</head>
+<body>
+
+</body>
+</html>

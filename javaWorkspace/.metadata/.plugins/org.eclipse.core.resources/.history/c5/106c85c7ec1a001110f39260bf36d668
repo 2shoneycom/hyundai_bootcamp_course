@@ -1,0 +1,32 @@
+package booksaleView;
+
+import java.util.Scanner;
+
+import clientView.ClientLogin;
+import view.ResultView;
+
+public class MainView {
+
+	public static void main(String[] args) {
+		// 메뉴 생성
+		Scanner sc = new Scanner(System.in); 
+		
+		ClientLogin login = new ClientLogin();
+		
+		if (login.login(sc)) {
+			ResultView.succMsg("로그인 되었습니다");
+			while (true) {
+				System.out.println("===============도서관리 프로그램=============");
+				System.out.println("1. 도서 구매");
+				System.out.println("2. 구매 내역 조회");
+				System.out.println("3. 구매  수정");
+				System.out.println("4. 도서정보 삭제");
+				System.out.println("5. 종료(로그아웃)");
+				System.out.println("========================================");
+				
+				System.out.println("")
+			}
+		}
+	}
+
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>setInterval() 예제</title>
+<script type="text/javascript">
+	function showTime() {
+		let now = new Date();
+		
+		let hour = now.getHours();
+		let minute = now.getMinutes();
+		let second = now.getSeconds();
+		let amPm = "오전";
+
+		if (hour >= 12) {
+			amPm = "오후";
+			if (hour >= 13) {
+				hour -= 12;
+			}
+		}
+		
+		var time = amPm + " " + hour + "시 " + minute + "분 " + second + "초 ";
+		timeShow.innerHTML = time;
+	}
+</script>
+</head>
+<body>
+  <button onClick="timerId=setInterval('showTime()', 100)">시간 출력</button>
+  <button onClick="clearInterval(timerId)">시간 정지</button>
+  <h1 id="timeShow">시간 출력</h1>
+</body>
+</html>
+
+

@@ -1,0 +1,25 @@
+package secure.sec01;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
+
+public class StudentInjectMain {
+	public static void main(String[] args) {
+		// DB 연결
+		DBConnect dbCon = new DBConnect();
+		Connection con = dbCon.getConnection();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Scanner sc = new Scanner(System.in);
+		
+		try {
+			System.out.println("학생 번호 입력: ");
+			String stdNo = sc.nextLine();
+			System.out.println(stdNo);
+		}
+		
+		sc.close();
+	}
+}
