@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function start() {
+	alert("이미지 10개 출력");
+	
+	showImg();
+}	
+
+function showImg() {
+	let turn = 0;
+	let itv1 = setInterval(() => {
+		if (turn % 2 == 0) {
+			document.write('<img src="./image/apple.png" />');
+		}
+		else {
+			document.write('<img src="./image/bomb.png" />');
+		}
+		turn += 1;
+		
+		if (turn >= 10) {
+			clearInterval(itv1);
+		}
+	}, 1000);
+}
+
+start();
+</script>
+</head>
+<body>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <script type="text/javascript">
+  function input() {
+	  let arr = new Array(5);
+	  for (let i = 0; i < arr.length; i++) {
+		  arr[i] = Number(window.prompt(`${i+1}번째 숫자 입력`));
+	  }
+	  document.write("최댓값: ", max(arr, (val1, val2) => {
+		  return val1 > val2 ? val1 : val2;
+	  }))
+  }
+  
+  var max = function (arr, callback) {
+	  let maxN = -999999999;
+	  for (let i = 0; i < arr.length; i++) {
+		  maxN = callback(arr[i], maxN);
+	  }
+	  return maxN;
+  }
+  
+  input();
+  </script>
+</head>
+<body>
+	
+</body>
+</html>

@@ -1,0 +1,109 @@
+/* menu.css */
+@charset "UTF-8";
+
+/************** TOP MENU ***************/
+#topMenuBox {
+  float: right;
+  font-weight: bold;
+  padding-right: 10px;
+}
+
+/************** MAIN MENU ***************/
+#mainMenuBox {
+  width: 1280px;
+  height: 35px;
+  line-height: 35px;
+  background: #ffffff;
+  z-index: 10;
+  border-top: solid #CCC 1px;
+  border-bottom: solid #CCC 1px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#mainMenuBox li {
+  float: left;
+  text-align: center;
+  width: 16%;
+  height: 30px;
+}
+
+#mainMenuBox li:first-child {
+  width: 19%;
+  border: solid 3px black;
+}
+
+#mainMenuBox li a {
+  text-decoration: none;
+  color: black;
+}
+
+#mainMenuBox li a:hover {
+  color: red;
+}
+
+/************** SUB MENU ***************/
+#subMenuBox {
+  width: 1280px;
+  height: 160px;
+  background: #ffffff;
+  text-align: center;
+  z-index: 10;
+  padding-bottom: 0;
+  position: absolute;
+  visibility: hidden
+}
+
+.subMenuItem {
+  width: 15%;
+  background: white;
+  border-left: solid #CCC 1px;
+  border-right: solid #CCC 1px;
+}
+
+#subMenuItem1 {
+  position: absolute;
+  margin-left: 5%;
+}
+
+#subMenuItem2 {
+  position: absolute;
+  margin-left: 20%;
+}
+
+#subMenuItem3 {
+  position: absolute;
+  margin-left: 35%;
+}
+
+#subMenuItem4 {
+  position: absolute;
+  margin-left: 50%;
+}
+
+#subMenuItem5 {
+  position: absolute;
+  margin-left: 65%;
+}
+
+#subMenuItem6 {
+  position: absolute;
+  margin-left: 80%;
+}
+
+.subMenuItem li a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.subMenuItem li a:hover {
+  text-decoration: underline;
+  color: black;
+}
+
+
+

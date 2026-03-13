@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>가상요소 예제</title>
+  <style>
+  	/*"👉"*/
+    p::before {
+      content: "👉";
+      margin-right: 0.3em; 
+    }
+    p::after {
+      content: "그냥 그렇다고..";
+      font-style: italic;
+      display: inline-block;
+      width: 200px;
+      height: 100px;
+      margin-left: 0.3em;
+      border: 1px solid #550;
+      border-radius: 10px;
+      text-align: center;
+      line-height: 100px;
+    }
+    li::marker {
+      list-style: none;
+    }
+  </style>
+</head>
+<body>
+  <p>
+    문단의 콘텐츠입니다.
+  </p>
+  <ul>
+    <li>라면</li>
+    <li>김밥</li>
+    <li>돈까스</li>
+  </ul>
+</body>
+</html>

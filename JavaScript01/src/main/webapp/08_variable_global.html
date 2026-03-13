@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>전역변수</title>
+		<script type="text/javascript">
+			var x = 5, y = 10;
+			total = 0;
+			
+			function f1() {
+				x = x + y;
+				document.write("f1()실행, x: " + x + "<br>");
+			}
+		
+			function f2() {
+				total = x + y;
+				document.write("f2()실행, total: " + total + "<br>");
+			}
+			
+			// 함수 사용 : 함수 호출
+			f2();
+			f1();
+			
+			document.write("total: " + total  + "<br>"); 
+			
+		</script>
+	</head>
+	<body>
+		
+	</body>
+</html>

@@ -1,0 +1,27 @@
+/* tabMenu.css */
+@charset "UTF-8";
+
+/***** TAB MENU *****/
+#tabMenuBox {
+  width: 80%;
+  height: 580px;
+  background: white;
+  padding: 40px;
+  text-align: center;
+}
+
+#tabMenu ul {
+  height: 30px;
+  padding: 0;
+}
+
+#tabMenu ul li {
+  float: left;
+  list-style: none;
+  width: 25%;
+  height: 30px;
+  padding: 0;
+  line-height: 30px;
+  overflow: hidden;
+  margin-top: 30px;
+}

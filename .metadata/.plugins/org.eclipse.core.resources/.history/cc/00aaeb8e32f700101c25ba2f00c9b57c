@@ -1,0 +1,7 @@
+/* tabMenu.css */
+@charset "UTF-8";
+
+/***** TAB MENU *****/
+#tabMenuBox {
+  width: 80%
+}

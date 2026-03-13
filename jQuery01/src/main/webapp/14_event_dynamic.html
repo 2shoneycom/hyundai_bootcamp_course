@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>동적 연결 이벤트 방식</title>
+<script src="jquery-3.7.1.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// createBtn 버튼 클릭했을 때
+		$('#createBtn').on('click', function() {
+			$(this).after('<p><input type="button" id="newBtn1" value="새버튼1"></p>'+
+						  '<p><input type="button" id="newBtn2" value="새버튼2"></p>');
+		});
+
+		// 버튼 이벤트 처리
+		// (1) 동적 연결 방식 아님
+		$('#newBtn1').on('click', function(){
+			alert("[새 버튼 1] 클릭했습니다");
+		});
+
+		// (2) 동적 연결 방식 (!! 이렇게 해야됨 !!)
+		$(document).on('click', '#newBtn2', function() {
+			alert("[새 버튼 2] 클릭했습니다");
+		});
+	});
+</script>
+</head>
+<body>
+  <button id="createBtn">새 버튼 만들기2</button>
+</body>
+</html>

@@ -1,0 +1,54 @@
+/* slideShow.css */
+@charset "UTF-8";
+
+#prevNextButtonBox {
+  position: relative;
+  z-index: 10;
+}
+
+#prevButton {
+  position: absolute;
+  top: 201px;
+  left: 4%;
+  opacity: 0.8;
+}
+
+#nextButton {
+  position: absolute;
+  top: 201px;
+  right: 4%;
+  opacity: 0.8;
+}
+
+#prevNextButtonBox > img:hover {
+  opacity: 1;
+}
+
+#slideShow {
+  height: 520px; /* slideShowBox 높이 + controlPanel 높이 */
+  line-height: 520px;
+  background-color: white;
+  border-bottom: solid #CCC 1px;
+  position: relative;
+}
+
+#slideShowBox {
+  width: 1280px;
+  height: 480px;
+  text-align: center;
+  overflow: hidden;
+}
+
+#slidePanel {
+  position: relative;
+  width: 6400px;
+  height: 480px;
+}
+
+.slideImage {
+  float: left;
+  width: 1280px;
+  height: 480px;
+}
+
+/* 컨트롤 패널 */

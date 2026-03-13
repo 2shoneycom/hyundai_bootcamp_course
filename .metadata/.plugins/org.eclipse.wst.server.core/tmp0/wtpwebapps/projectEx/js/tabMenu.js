@@ -1,0 +1,28 @@
+/**
+ * tabMenu.js
+ */
+
+$(function() {
+	let $tabContents = $('#tabContent div');
+	
+	$('#tabMenu li:first-child').addClass('selectedItem');
+	
+	$('#tabMenu li').on('click', function() {
+		let selectedIndex = $(this).index();
+		
+		/* $('#tabMenu li').each(function(index) {
+			if (index == selectedIndex) {
+				$(this).addClass('selectedItem');
+			} else {
+				$(this).removeClass('selectedItem');
+			}
+		}) */
+		// 위 보다 더 효율적인 방법 
+		$('#tabMenu li').removeClass('selectedItem');
+		$(this).addClass('selectedItem');
+		
+		// 선택된 메뉴에 해당하는 이미지 띄워주기
+		$tabContents.css('display', 'none');
+		$tabContents.eq(selectedIndex).css('display', 'block');
+	});
+});

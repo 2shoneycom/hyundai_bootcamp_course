@@ -1,0 +1,45 @@
+/**
+ * slideShow.js
+ */
+
+$(function() {
+	let $slideImages = $('#slidePanel > img');
+	let moveIndex = parseInt(Math.random() * $slideImages.length);
+	$('#slidePanel').css('left', `-${moveIndex * 1280}px`);
+
+	function moveSlide(index) {
+		moveIndex = index;
+
+		let moveLeft = -(index * 1280);
+		$('#slidePanel').animate({ 'left': moveLeft }, 'slow');
+	}
+
+	$('#prevButton').on('click', function() {
+		if (moveIndex > 0) {
+			moveSlide(moveIndex - 1);
+		}
+	});
+
+	$('#nextButton').on('click', function() {
+		if (moveIndex < $slideImages.length - 1) {
+			moveSlide(moveIndex + 1);
+		}
+	});
+
+	// 컨트롤 패널
+	$('.controlButton').each(function(index) {
+		$(this).hover(
+			// mouseenter
+			function() {
+				$(this), attr(
+					'src', 'image/controlButton2.png'
+				)
+			},
+			// mouseleave
+			function() {
+
+			}
+		);
+		$(this).on('click', function() { moveSlide(index) });
+	})
+})
