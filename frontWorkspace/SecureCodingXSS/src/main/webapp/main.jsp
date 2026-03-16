@@ -56,27 +56,28 @@
     <form action="reflected.jsp" method="get">
       <div class="form__input">
         <div>
-          <span> 검색어 </span>
-          <!-- 입력되는 입력값은 reflected.jsp 서버 페이지 쪽으로 keyword 파라미터에 담겨서 전달됨 -->
+          <span> 검색 </span>
+          <!-- 입력되는 입력값은 reflected.jsp 서버 페이지쪽으로 keyword 파라미터에 담겨서 전달됨 -->
           <input type="text" name="keyword" />
         </div>
       </div>
-      <input class="form__button" type="submit" value="검색" />
+      <input class="form__button" type="submit" value=" 전송 " />
     </form>
   </div>
 
   <div class="container">
+    <!-- main.jsp를 요청할 때 keyword 파라미터가 전달되면 전달되는 파라미터 값을 화면에 표현 -->
     <%
-      request.setCharacterEncoding("UTF-8");
-      String keyword = request.getParameter("keyword");
-      if (keyword==null) {
-        keyword = "";
-      }
+    request.setCharacterEncoding("UTF-8");
+    String key = request.getParameter("keyword");
+    if (key == null) {
+    	key = "";
+    }
     %>
 
     <div class="container__header">
       검색어
-      <%= keyword %>
+      <%=key%>
     </div>
   </div>
 

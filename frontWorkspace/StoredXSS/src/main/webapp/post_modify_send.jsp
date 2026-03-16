@@ -8,8 +8,8 @@
 try
 {
 	Class.forName("oracle.jdbc.driver.OracleDriver");
-	String db_address = "jdbc:oracle:thin:@localhost:1521:xe";
-	String db_username = "SQL_USER";
+	String db_address = "jdbc:oracle:thin:@localhost:29889:xe";
+	String db_username = "C##SQL_USER";
 	String db_pwd = "1234";
     Connection connection = DriverManager.getConnection(db_address, db_username, db_pwd);
     

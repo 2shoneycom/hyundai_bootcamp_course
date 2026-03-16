@@ -1,12 +1,12 @@
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.sql.Connection"%>
+<%@ page import="java.sql.PreparedStatement"%>
+<%@ page import="java.sql.DriverManager"%>
+<%@ page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="UTF-8">
 <title>게시글 목록</title>
@@ -15,21 +15,21 @@
 <body>
   <form action="post_read.jsp" method="get">
     <h1>게시글 목록</h1>
-    <% 
-      // database 연결을 위한 코드
-      try {
-        Class.forName("oracle.jdbc.driver.OracleDriver");
-        
-        String db_address = "jdbc:oracle:thin:@localhost:29889:xe";
-        String db_username = "C##SQL_USER";
-        String db_pwd = "1234";
-        
-        String listQuery = "SELECT * FROM practice_board ORDER BY 1 DESC";
-        
-        Connection connection = DriverManager.getConnectin(db_address, db_username, db_pwd);
-        PreparedStatement pstmt = connection.prepareStatement(listQuery);
-        
-        ResultSet result = pstmt.executeQuery();
+    <%
+    //database 연결을 위한 코드
+    try {
+    	Class.forName("oracle.jdbc.driver.OracleDriver");
+
+    	String db_address = "jdbc:oracle:thin:@localhost:29889:xe";
+    	String db_username = "C##SQL_USER";
+    	String db_pwd = "1234";
+
+    	String listQuery = "select * from pratice_board order by num desc ";
+
+    	Connection connection = DriverManager.getConnection(db_address, db_username, db_pwd);
+    	PreparedStatement pstmt = connection.prepareStatement(listQuery);
+
+    	ResultSet result = pstmt.executeQuery();
     %>
 
     <table border="1">
@@ -51,28 +51,32 @@
         <td>작성일</td>
         <td>관리</td>
       </tr>
-      <% 
-        for (int i = 1; result.next(); i++) {
+      <%
+      while (result.next()) {
       %>
       <tr>
-        <td><%= %></td>
-        <td><%= %></td>
-        <td><a href="post_read.jsp?num=<%=  %>"> <%= %>
+        <td><%=result.getInt("num")%></td>
+        <td><%=result.getString("writer")%></td>
+        <td><a href="post_read.jsp?num=<%=result.getInt("num")%>">
+            <%=result.getString("title")%>
         </a></td>
-        <td><%= %></td>
+        <td><%=result.getTimestamp("regdate")%></td>
         <td>
           <button type="button" value="수정"
-            onClick="location.href='post_modify.jsp?num=<%=result.getString("
-													num") %>'">수정</button>
+            onClick="location.href='post_modify.jsp?num=<%=result.getInt("num")%>'">수정</button>
           <button type="button" value="삭제"
-            onClick="location.href='post_delete_send.jsp?num=<%=result.getString("
-													num") %>'">삭제</button>
+            onClick="location.href='post_delete_send.jsp?num=<%=result.getInt("num")%>'">삭제</button>
         </td>
       </tr>
-      <% }%>
+      <%
+      }
+      %>
     </table>
-    <% } catch (Exception ex) { out.println("오류가 발생했습니다. 오류 메시지 : " + ex.getMessage());
-			}%>
+    <%
+    } catch (Exception ex) {
+    out.println("오류가 발생했습니다. 오류 메시지 : " + ex.getMessage());
+    }
+    %>
   </form>
 </body>
 </html>

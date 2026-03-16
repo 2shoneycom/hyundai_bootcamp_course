@@ -179,3 +179,4 @@
 0:0:0:0:0:0:0:1 - - [13/Mar/2026:16:33:17 +0900] "GET /StoredXSS/ HTTP/1.1" 404 807
 0:0:0:0:0:0:0:1 - - [13/Mar/2026:16:33:44 +0900] "GET /StoredXSS/main.html HTTP/1.1" 200 259
 0:0:0:0:0:0:0:1 - - [13/Mar/2026:16:34:08 +0900] "GET /StoredXSS/post_list.jsp HTTP/1.1" 500 3741
+0:0:0:0:0:0:0:1 - - [13/Mar/2026:17:27:50 +0900] "GET /StoredXSS/post_list.jsp HTTP/1.1" 500 3761
