@@ -1,7 +1,0 @@
-package booksaleView;
-
-public class BooksaleInsert {
-	public void insert() {
-		
-	}
-}
