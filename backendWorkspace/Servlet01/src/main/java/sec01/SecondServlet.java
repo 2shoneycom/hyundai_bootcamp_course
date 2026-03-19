@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FirstServlet
+ * Servlet implementation class SecondServlet
  */
-// @WebServlet("/FirstServlet")
-public class FirstServlet extends HttpServlet {
+@WebServlet("/SecondServlet")
+public class SecondServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FirstServlet() {
+    public SecondServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class FirstServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("init 메소드 호출됨");
+		System.out.println("init 메소드2 호출됨");
 	}
 
 	/**
@@ -36,7 +36,7 @@ public class FirstServlet extends HttpServlet {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
-		System.out.println("destroy 메소드 호출됨");
+		System.out.println("destroy 메소드2 호출됨");
 	}
 
 	/**
@@ -44,7 +44,7 @@ public class FirstServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("doGet 메소드 호출됨");
+		System.out.println("doGet 메소드2 호출됨");
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

@@ -1,12 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>Servlet01</display-name>
-  <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-  </welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>Servlet01</display-name>
+
+	<!-- (1) 서블릿 등록: 사용할 서블릿 클래스에 이름을 붙여준다 -->
+	<servlet>
+		<servlet-name>aaa</servlet-name>
+		<servlet-class>sec01.FirstServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>bbb</servlet-name>
+		<servlet-class>sec01.SecondServlet</servlet-class>
+	</servlet>
+
+	<!-- (2) 서블릿 매핑: 위에서 만든 별명(aaa)을 실제 url과 연결한다 -->
+	<servlet-mapping>
+		<servlet-name>aaa</servlet-name>
+		<url-pattern>/first</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>bbb</servlet-name>
+		<url-pattern>/second</url-pattern>
+	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+	</welcome-file-list>
 </web-app>

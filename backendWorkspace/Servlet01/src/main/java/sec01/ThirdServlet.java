@@ -9,16 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class FirstServlet
+ * Servlet implementation class ThirdServlet
  */
-// @WebServlet("/FirstServlet")
-public class FirstServlet extends HttpServlet {
+@WebServlet("/ThirdServlet")
+public class ThirdServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FirstServlet() {
+    public ThirdServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class FirstServlet extends HttpServlet {
 	 */
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		System.out.println("init 메소드 호출됨");
+		System.out.println("init 메소드 호출");
 	}
 
 	/**
@@ -36,16 +36,15 @@ public class FirstServlet extends HttpServlet {
 	 */
 	public void destroy() {
 		// TODO Auto-generated method stub
-		System.out.println("destroy 메소드 호출됨");
+		System.out.println("destroy 메소드 호출");
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("doGet 메소드 호출됨");
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		System.out.println("doPost 메소드 호출");
 	}
 
 }
