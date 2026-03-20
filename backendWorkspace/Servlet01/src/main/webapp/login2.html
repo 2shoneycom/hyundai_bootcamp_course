@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>파라미터연습</title>
+<script type="text/javascript">
+	// 자바 크립트로 서블릿에 요청
+	// DOM 사용
+	window.onload = function() {
+		let formLogin = document.getElementById("formLogin");
+		
+		formLogin.addEventListener('submit', () => {
+			let id = document.getElementById("user_id");
+			let pw = document.getElementById("user_pw");
+			if (id.value == "" || pw.value == "") {
+				alert("아이디와 비밀번호는 필수입니다");
+			} else {
+				formLogin.method = "post";
+				formLogin.action = "login4";
+				formLogin.submit();
+			}
+		});
+	}
+</script>
+</head>
+<body>
+	<form id="formLogin" name="formLogin">
+		아이디 : <input type="text" id="user_id" name="user_id"> <br>
+		비밀번호 : <input type="password" id="user_pw" name="user_pw"> <br>
+		<input type="submit" value="로그인"><input type="reset" value="다시입력">		
+	</form>
+</body>
+</html>
