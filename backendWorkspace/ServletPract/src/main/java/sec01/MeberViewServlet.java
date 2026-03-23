@@ -1,4 +1,4 @@
-package sec06;
+package sec01;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MeberView1Servlet
  */
-@WebServlet("/selView")
-public class MeberView1Servlet extends HttpServlet {
+@WebServlet("/memberView")
+public class MeberViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,6 +44,7 @@ public class MeberView1Servlet extends HttpServlet {
 			out.print("<tr><td>" + vo.getId() + "</td>");
 			out.print("<td>" + vo.getPwd() + "</td>");
 			out.print("<td>" + vo.getName() + "</td>");
+			out.print("<td>" + vo.getEmail() + "</td>");
 			out.print("<td>" + vo.getMemJoinDate() + "</td>");
 			out.print("<td><a href='/Servlet01/memDelete?memId=" + vo.getId() + ">삭제</td></tr>");
 		}
