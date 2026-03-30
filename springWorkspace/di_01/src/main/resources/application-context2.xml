@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- beans 태그는 주입할 클래스들의 집합 -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="nameService" class="com.di.spring_di_xml_setter.NameService" />
+	<bean id="nameController" class="com.di.spring_di_xml_setter.NameController">
+		<!-- setter 기반 주입 : nameService 참조 property 서브 태그 사용 -->
+		<!-- property의 name 속 -->
+		<property name="nameService" ref="nameService"></property>
+	</bean>
+
+</beans>
