@@ -21,10 +21,13 @@ public class NewController {
 	}
 	
 	@RequestMapping("/showInfo2")
-	public String showInfoMV(ModelAndView mv) {
+	public ModelAndView showInfoMV(ModelAndView mv) {
+		
 		mv.addObject("name", "이몽룡");
 		mv.addObject("address", "서울");
+		
 		mv.setViewName("showInfoMV");
-		return "showInfoMV";
+		
+		return mv;
 	}
 }
