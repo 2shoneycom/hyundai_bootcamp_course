@@ -139,6 +139,7 @@
 			<artifactId>spring-tx</artifactId>
 			<version>5.2.25.RELEASE</version>
 		</dependency>     
+		<!-- MyBatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>

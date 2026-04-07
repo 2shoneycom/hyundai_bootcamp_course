@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring_mvc.mybatisEx.model.IBookDAO">
+	<resultMap id="bookResult" type="com.spring_mvc.mybatisEx.vo.BookVO">
+		<result property="bookNo" column="bookNo" />
+		<result property="bookName" column="bookName" />
+		<result property="bookAuthor" column="bookAuthor" />
+		<result property="bookPrice" column="bookPrice" />
+		<result property="bookDate" column="bookDate" />
+		<result property="bookStock" column="bookStock" />
+		<result property="pubNo" column="pubNo" />
+	</resultMap>
+	
+	<select id="listAllBook" resultMap="bookResult">
+		SELECT * FROM book ORDER BY bookNo
+	</select>
+</mapper>
