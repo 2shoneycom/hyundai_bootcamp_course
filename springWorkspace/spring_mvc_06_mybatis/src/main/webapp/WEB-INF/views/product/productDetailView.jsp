@@ -23,6 +23,16 @@
 	    <!-- index 페이지로 이동 링크 추가 -->
 		<a href="<c:url value='/'/>">[홈으로 이동]</a>
 		<!-- 상품 정보 수정 페이지 요청 링크 추가 --> 
-		<a href="<c:url value='/product/updateProductForm'/>">[상품 정보 수정]</a> 
+		<a href="<c:url value='/product/updateProductForm/${prd.prdNo}'/>">[상품 정보 수정]</a>
+		<!-- 상품 정보 삭제 요청 링크 추가 : 삭제 확인 메시지 출력 --> 
+		<a href="javascript:deleteCheck();">[상품 정보 삭제]</a>
+		<script type="text/javascript">
+			function deleteCheck() {
+				let answer = confirm("삭제하시겠습니까?");
+				if (answer == true) {
+					location.href="<c:url value='/product/deleteProduct/${prd.prdNo}'/>";
+				}
+			}
+		</script> 
 	</body>
 </html>

@@ -17,6 +17,19 @@ public class ProductService implements IProductService {
 	@Qualifier("IProductDAO")
 	IProductDAO dao;
 	
+	// 상품 번호 중복 확인
+	@Override
+	public String prdNoCheck(String prdNo) {
+		String no = dao.prdNoCheck(prdNo);
+		
+		String result = "avaliable";
+		
+		if (no != null) { // 상품번호가 존재
+			result = "no_avaliable";
+		} 
+		
+		return result;
+	}
 	
 	// 전체 상품 조회
 	@Override
@@ -34,14 +47,13 @@ public class ProductService implements IProductService {
 	// 상품 정보 변경
 	@Override
 	public void updateProduct(ProductVO prdVo) {
-		// TODO Auto-generated method stub
+		dao.updateProduct(prdVo);
 	}
 
 	// 상품 정보 삭제
 	@Override
 	public void deleteProduct(String prdNo) {
-		// TODO Auto-generated method stub
-		
+		dao.deleteProduct(prdNo);
 	}
 
 	// 상세 상품 조회

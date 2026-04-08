@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring_mvc.mybatis.service.ProductService;
 import com.spring_mvc.mybatis.vo.ProductVO;
@@ -23,7 +25,7 @@ public class ProductController {
 	
 	// 전체 상품 조회
 	@RequestMapping("/product/listAllProduct")
-	public String handleListAllProduct(Model model) {
+	public String listAllProduct(Model model) {
 		model.addAttribute("prdList", service.listAllProduct());
 		return "product/productListView";
 	}
@@ -52,4 +54,33 @@ public class ProductController {
 		return "product/productDetailView";
 	}
 	
+	// 상품 정보 수정 폼 요청
+	@RequestMapping("/product/updateProductForm/{prdNo}")
+	public String viewUpdateForm(@PathVariable String prdNo, Model model) {
+		model.addAttribute("prd", service.detailViewProduct(prdNo));
+		return "product/updateProductForm";
+	}
+	
+	// 상품 정보 수정
+	@RequestMapping("/product/updateProduct")
+	public String updateProduct(ProductVO prd) {
+		service.updateProduct(prd);
+		return "redirect:/product/listAllProduct";
+	}
+	
+	// 상품 정보 삭제
+	@RequestMapping("/product/deleteProduct/{prdNo}")
+	public String deleteProduct(@PathVariable String prdNo) {
+		service.deleteProduct(prdNo);
+		return "redirect:/product/listAllProduct";
+	}
+	
+	// 상품 번호 중복 확인
+	@ResponseBody
+	@RequestMapping("/product/prdNoCheck")
+	public String prdNodCheck(@RequestParam("prdNo") String prdNo) {
+		String res = service.prdNoCheck(prdNo);
+		
+		return res;
+	}
 }

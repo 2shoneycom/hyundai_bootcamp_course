@@ -19,5 +19,25 @@ public class BookService implements IBookService {
 	public ArrayList<BookVO> listAllBook() {
 		return dao.listAllBook();
 	}
+	
+	@Override
+	public void insertBook(BookVO bookVo) {
+		dao.insertBook(bookVo);		
+	}
+
+	@Override
+	public void updateBook(BookVO bookVo) {
+		dao.updateBook(bookVo);		
+	}
+
+	@Override
+	public void deleteBook(String bookVo) {
+		dao.deleteBook(bookVo);		
+	}
+
+	@Override
+	public BookVO detailViewBook(String bookVo) {
+		return dao.detailViewBook(bookVo);
+	}
 
 }

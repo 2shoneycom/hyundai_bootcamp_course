@@ -11,6 +11,6 @@
 		<h3>도서 정보 관리</h3><br>
 		
 		<a href="<c:url value='book/listAllBook'/>">전체 조회</a><br>
-
+		<a href="<c:url value='book/newBookForm'/>">새로운 도서 정보 등록</a><br>
 </body>
 </html>

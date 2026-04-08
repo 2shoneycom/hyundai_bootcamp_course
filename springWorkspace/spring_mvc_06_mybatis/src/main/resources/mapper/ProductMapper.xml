@@ -50,4 +50,22 @@
 	<select id='detailViewProduct' parameterType="string" resultMap="prdResult" >
 		SELECT * FROM product WHERE prdNo=#{prdNo}
 	</select>
+	
+	<!-- void updateProduct(ProductVO prdVo) -->
+	<update id="updateProduct" parameterType="com.spring_mvc.mybatis.vo.ProductVO">
+		UPDATE product SET prdName=#{prdName}, prdPrice=#{prdPrice},
+						   prdCompany=#{prdCompany}, prdStock=#{prdStock}, prdDate=#{prdDate}
+		WHERE prdNo=#{prdNo}
+	</update>
+	
+	<!-- void deleteProduct(String prdNo) -->
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM product WHERE prdNo = #{prdNo}
+	</delete>
+	
+	<!-- String prdNoCheck(String prdNo) -->
+	<select id="prdNoCheck" resultType="string" parameterType="string">
+		SELECT prdNo FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
 </mapper>

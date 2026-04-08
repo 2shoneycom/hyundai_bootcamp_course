@@ -14,7 +14,32 @@
 		<result property="pubNo" column="pubNo" />
 	</resultMap>
 	
+	<!-- public ArrayList<BookVO> listAllBook() -->
 	<select id="listAllBook" resultMap="bookResult">
 		SELECT * FROM book ORDER BY bookNo
 	</select>
+	
+	<!-- public void insertBook(BookVO bookVo) -->
+	<insert id="insertBook" parameterType="com.spring_mvc.mybatisEx.vo.BookVO">
+		INSERT INTO book(bookNo, bookName, bookAuthor, bookPrice, bookDate, bookStock)
+		VALUES (#{bookNo}, #{bookName}, #{bookAuthor}, #{bookPrice}, #{bookDate}, #{bookStock})
+	</insert>
+
+	<!-- public void updateBook(BookVO bookVo) -->
+	<update id="updateBook" parameterType="com.spring_mvc.mybatisEx.vo.BookVO">
+		UPDATE book SET bookName=${bookName}, bookAuthor=#{bookAuthor}, bookPrice=#{bookPrice},
+						bookDate=${bookDate}, bookStock=#{bookStock}
+		WHERE bookNo=#{bookNo}
+	</update>
+
+	<!-- public void deleteBook(String bookVo) -->
+	<delete id="deleteBook" parameterType="string">
+		DELETE FROM book WHERE bookNo=${bookNo}  
+	</delete>
+
+	<!-- public BookVO detailViewBook(String bookVo) -->
+	<select id="detailViewBook" parameterType="string" resultMap="bookResult">
+		SELECT * FROM book WHERE bookNo=#{bookNo}
+	</select>
+	
 </mapper>

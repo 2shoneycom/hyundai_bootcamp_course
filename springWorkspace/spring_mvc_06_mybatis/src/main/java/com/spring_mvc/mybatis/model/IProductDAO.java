@@ -19,4 +19,7 @@ public interface IProductDAO {
 		
 		// 상세 상품 조회
 		ProductVO detailViewProduct(String prdNo); 
+		
+		// 상품 번호 중복확인
+		String prdNoCheck(String prdNo);
 }

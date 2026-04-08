@@ -18,6 +18,7 @@
 			<th>제조사</th>
 			<th>재고</th>
 			<th>제조일</th>
+			<th>상품이미지</th>
 			</tr>
 			
 			<!-- 반복문 사용해서 모든 데이터 출력 -->
@@ -32,6 +33,7 @@
 					<td>${prd.prdCompany}</td>
 					<td>${prd.prdStock}</td>
 					<td><fmt:formatDate value="${prd.prdDate}" pattern="yyyy-MM-dd" /></td>
+					<td><img src="<c:url value='/prd_images/${prd.prdNo}.jpg'/>" width="30" height="20"/></td>
 				</tr>
 			</c:forEach>
 
