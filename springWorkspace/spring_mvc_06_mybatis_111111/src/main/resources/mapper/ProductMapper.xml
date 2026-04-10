@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace : 이 mapper가 구현할 인터페이스 정보(패키지명.인터페이스명) 
+	인터페이스 구현 클래스와 같은 의미 -> 인터페이스 내 모든 추상메소드가 표현되어야 함
+-->
+<mapper namespace="com.spring_mvc.mybatis.model.IProductDAO" >
+	<!-- 특정테이블 칼럼과 타입의 클래스 필드를 1:1로 매핑 -->
+	<resultMap id="prdResult" type="com.spring_mvc.mybatis.vo.ProductVO" >
+		<result property="prdNo" column="prdNo" />
+		<result property="prdName" column="prdName" />
+		<result property="prdPrice" column="prdPrice" />
+		<result property="prdCompany" column="prdCompany" />
+		<result property="prdStock" column="prdStock" />
+		<result property="prdDate" column="prdDate" />
+	</resultMap>
+
+	<!-- 
+		<쿼리태그 id="메소드명" [resultMap=""/resultType=""/parameterType=""/statementType=""]>
+			실행 쿼리 문장
+		</쿼리태그>
+		반환 결과 : resultMap=""/resultType="" -> 집합 타입의 의미가 아니고 레코드 타입을 의미함
+		메소드 파라미터 : parameterType=""
+		statement 객체 타입 : statementType="" (생략 -> prepared 사용)
+	 -->
+
+	<!-- 전체 상품 조회 : id 속성 value mapper가 구현하는 dao 인터페이스의 추상메소드와 이름이 같아야 함 -->
+	<!-- 조회 : SELECT 쿼리 => 반환값 있음 resultType/resultMap(mapper가 구성함) 필수 -->
+	<!-- <select id="listAllProduct" resultMap="prdResult" >
+		SELECT * FROM product ORDER BY prdNo
+	</select> -->
+	<!-- resultType 사용 : 패키지 포함 클래스명 / 클래스 필드명과 테이블 컬럼명이 동일해야 함 -->
+	<select id="listAllProduct" resultType="com.spring_mvc.mybatis.vo.ProductVO" >
+		SELECT * FROM product ORDER BY prdNo
+	</select>
+	
+	<!-- 상품 정보 등록 : void insertProduct(ProductVO prdVo) -->
+	<!-- parameterType : 실제 전달되는 data type
+		 전달 parameter 활용 : 홀더문자 #{} : preparedStatement / ${} statement 사용 -->
+	<insert id="insertProduct" parameterType="com.spring_mvc.mybatis.vo.ProductVO" >
+		INSERT INTO product(prdNo, prdName, prdPrice, prdCompany, prdStock, prdDate)
+		VALUES (#{prdNo}, #{prdName}, #{prdPrice}, #{prdCompany}, #{prdStock}, #{prdDate})
+	</insert>
+	
+	<!-- 상품 상세 정보 조회 : ProductVO detailViewProduct(String prdNo) 
+		parameterType : 개발자 생성 객체 -> 패키지 명부터 클래스명까지
+					  : 기본 객체 -> 객체명만 소문자로
+	-->
+	<select id='detailViewProduct' parameterType="string" resultMap="prdResult" >
+		SELECT * FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+	<!-- void updateProduct(ProductVO prdVo) -->
+	<update id="updateProduct" parameterType="com.spring_mvc.mybatis.vo.ProductVO">
+		UPDATE product SET prdName=#{prdName}, prdPrice=#{prdPrice},
+						   prdCompany=#{prdCompany}, prdStock=#{prdStock}, prdDate=#{prdDate}
+		WHERE prdNo=#{prdNo}
+	</update>
+	
+	<!-- void deleteProduct(String prdNo) -->
+	<delete id="deleteProduct" parameterType="string">
+		DELETE FROM product WHERE prdNo = #{prdNo}
+	</delete>
+	
+	<!-- String prdNoCheck(String prdNo) -->
+	<select id="prdNoCheck" resultType="string" parameterType="string">
+		SELECT prdNo FROM product WHERE prdNo=#{prdNo}
+	</select>
+	
+</mapper>

@@ -12,15 +12,15 @@ public class ProductVO {
 	private int prdStock;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date prdDate;
-	
+
+	public String getPrdNo() {
+		return prdNo;
+	}
 	public String getPrdCompany() {
 		return prdCompany;
 	}
 	public void setPrdCompany(String prdCompany) {
 		this.prdCompany = prdCompany;
-	}
-	public String getPrdNo() {
-		return prdNo;
 	}
 	public void setPrdNo(String prdNo) {
 		this.prdNo = prdNo;
