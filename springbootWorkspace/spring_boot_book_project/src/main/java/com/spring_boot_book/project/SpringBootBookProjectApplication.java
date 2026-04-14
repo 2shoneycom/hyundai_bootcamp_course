@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages={"com.spring_boot.book.project"})
-@MapperScan(basePackages={"com.spring_boot.book.project"})
+@ComponentScan(basePackages={"com.spring_boot_book.project"})
+@MapperScan(basePackages={"com.spring_boot_book.project"})
 public class SpringBootBookProjectApplication {
 
 	public static void main(String[] args) {

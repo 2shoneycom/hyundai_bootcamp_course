@@ -7,7 +7,8 @@
 <meta charset="UTF-8">
 <title>회원 가입 폼</title>
 <c:import url="/WEB-INF/views/layout/head.jsp" />
-
+<script type="text/javascript" src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script type="text/javascript" src="<c:url value='/js/searchZip.js'/>"></script>
 </head>
 <body>
 	<div id="wrap">

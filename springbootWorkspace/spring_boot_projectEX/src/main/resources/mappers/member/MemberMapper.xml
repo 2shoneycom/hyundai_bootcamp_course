@@ -3,12 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring_boot.projectEx.model.IMemberDAO">
-	<!-- public String loginCheck(HashMap<String, Object> map): 로그인 기능 -->
-	<select id="loginCheck" resultType="string" parameterType="hashmap">
+	<!-- public String loginCheck(HashMap<String, Object> map): 로그인 기능 (비밀번호 암호화 안 된 경우) -->
+	<!-- <select id="loginCheck" resultType="string" parameterType="hashmap">
 		SELECT memId FROM member WHERE memId=#{id} AND memPwd=#{pwd}
+	</select> -->
+	
+	<!-- public String loginCheck(String id) -->
+	<select id="loginCheck" resultType="string" parameterType="string">
+		SELECT memPwd FROM member WHERE memId=#{id}
 	</select>
+	
 	<!-- public String idCheck(String id) -->
 	<select id="idCheck" resultType="String" parameterType="string">
 		SELECT memId FROM member WHERE memId=#{id}
 	</select>
+	
+	<!-- public void insertMember(MemberDTO dto) -->
+	<insert id="insertMember" parameterType="com.spring_boot.projectEx.dto.MemberDTO">
+		INSERT INTO member(memId, memPwd, memName, memEmail, memHp, memZipcode, memAddress1, memAddress2)
+		VALUES (#{memId}, #{memPwd}, #{memName}, #{memEmail}, #{memHp}, #{memZipcode}, #{memAddress1}, #{memAddress2})
+	</insert>
 </mapper>

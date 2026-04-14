@@ -11,7 +11,7 @@ public class MemberDTO {
 	private String memEmail;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date memJoinDate;
-	private String memHP;
+	private String memHp;
 	private String memZipcode;
 	private String memAddress1;
 	private String memAddress2;
@@ -58,12 +58,12 @@ public class MemberDTO {
 		this.memJoinDate = memJoinDate;
 	}
 
-	public String getMemHP() {
-		return memHP;
+	public String getMemHp() {
+		return memHp;
 	}
 
-	public void setMemHP(String memHP) {
-		this.memHP = memHP;
+	public void setMemHp(String memHp) {
+		this.memHp = memHp;
 	}
 
 	public String getMemZipcode() {

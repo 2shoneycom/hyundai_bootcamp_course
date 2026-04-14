@@ -3,13 +3,15 @@ package com.spring_boot.projectEx.controller;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.spring_boot.projectEx.service.MemberService;
+import com.spring_boot.projectEx.dto.MemberDTO;
+import com.spring_boot.projectEx.service.IMemberService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -17,7 +19,8 @@ import jakarta.servlet.http.HttpSession;
 public class MemberController {
 	
 	@Autowired
-	MemberService memService;
+	@Qualifier("MemberService")
+	IMemberService memService;
 	
 	// 로그인 폼
 	@GetMapping("/member/loginForm")
@@ -26,17 +29,27 @@ public class MemberController {
 	}
 	
 	// 로그인 처리
+//	@ResponseBody
+//	@PostMapping("/member/login")
+//	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) { // 현재 요청 클라이언의 session이 전달
+//		String memId = memService.loginCheck(param);
+//		String result = "fail";
+//		// 로그인 세션 처리
+//		if (memId!=null) {
+//			session.setAttribute("sid", memId);
+//			result = "success";
+//		}
+//		return result;
+//	}
+	
+	// 로그인 처리
 	@ResponseBody
 	@PostMapping("/member/login")
 	public String loginCheck(@RequestParam HashMap<String, Object> param, HttpSession session) { // 현재 요청 클라이언의 session이 전달
-		System.out.println("컨트롤러가 받은 값: " + param.toString());
-		String memId = memService.loginCheck(param);
-		String result = "fail";
-		System.out.println("MemberController -> memId: " + memId);
+		String result = memService.loginCheck(param);
 		// 로그인 세션 처리
-		if (memId!=null) {
-			session.setAttribute("sid", memId);
-			result = "success";
+		if (result.equals("success")) {
+			session.setAttribute("sid", param.get("id"));
 		}
 		return result;
 	}
@@ -66,5 +79,15 @@ public class MemberController {
 		}
 		
 		return result;
+	}
+	
+	@PostMapping("/member/join")
+	public String join(MemberDTO dto, @RequestParam("memHp1") String memHp1,
+									  @RequestParam("memHp2") String memHp2,
+									  @RequestParam("memHp3") String memHp3) {
+		String memHp = memHp1 + "-" + memHp2 + "-" + memHp3;
+		dto.setMemHp(memHp);
+		memService.insertMember(dto); // 회원가입 완료 후 오류가 없으면
+		return "redirect:/member/loginForm";
 	}
 }

@@ -4,7 +4,7 @@
 <header>
 			<div id="headerBox">
 				<div id="logoBox">
-					<a href="index.html"><img src="/image/logo.png" id="logoImg"></a>
+					<a href="<c:url value='/'/>"><img src="/image/logo.png" id="logoImg"></a>
 				</div>
 				<div id="topMenuBox">
 					<!-- 로그인 하지 않은 경우 : 로그인, 회원가입 -->
@@ -12,7 +12,7 @@
 						<a href="<c:url value='/member/loginForm'/>">로그인</a> 
 						<a href="<c:url value='/member/joinForm'/>">회원가입</a>
 					</c:if>
-					<!-- 로그인 하지 않은 경우 : 로그인, 회원가입 -->
+					<!-- 로그인 처리 된 경우 : 로그아웃, 회원게시판, 장바구니, 마이페이지 -->
 					<c:if test="${not empty sessionScope.sid}">
 						${sessionScope.sid}님 환영합니다!
 						<a href="<c:url value='/member/logout'/>">로그아웃</a>
