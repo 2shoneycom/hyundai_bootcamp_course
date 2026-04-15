@@ -36,16 +36,23 @@
 			               <td><img src="<c:url value='/prd_images/${prd.prdImg}' />" width="30" height="20"></td>			              
 			               <td>${prd.prdName }</td>
 			               <td  align="right">
-			               		<span class="price" data-price=${prd.prdPrice }>
-			               			<fmt:formatNumber value="${prd.prdPrice }" pattern="#,###" />
+			               		<span class="price" data-price=${prd.prdPrice}>
+			               			<fmt:formatNumber value="${prd.prdPrice}" pattern="#,###" />
 			               		</span> 원</td>
-			               <td><input type="text" class="cartQty"  name="cartQty" value="${prd.cartQty }" size="1">
-			               			<input type="hidden" name="cartNo" value="${prd.cartNo}">
-			               			<%-- <input type="hidden" name="memId" value="${prd.memId}"> --%>
+			               <td>
+			               		<input type="text" class="cartQty"  name="cartQty" value="${prd.cartQty}" size="1">
+			               		<input type="hidden" name="cartNo" value="${prd.cartNo}">
+			               		<input type="hidden" name="prdNo" value="${prd.prdNo}">
+			               		<input type="hidden" name="prdName" value="${prd.prdName}">
+			               		<input type="hidden" name="prdPrice" value="${prd.prdPrice}">
+			               		<%-- <input type="hidden" name="memId" value="${prd.memId}"> --%>
 			               </td>
 			               <td align="right">
-						<!--금액 계산 로직 추가-->
-			               		<span> 
+								<!--금액 계산 로직 추가-->
+			               		<span class="amount"> 
+			               			<c:set var="amount" value="${prd.prdPrice * prd.cartQty}"/>
+			               			<c:set var="sum" value="${sum + amount}"/>
+			               			<fmt:formatNumber value="${amount}" pattern="#,###"/>
 			               		</span> 원
 			               </td>   
 			            </tr>
@@ -53,7 +60,9 @@
 			         <tr><td colspan="5">총구매예정금액</td>
 			         		<td align="right">
 			         			<span id="total">
-			         				<!--총 구매예정금액 표시--></span> 원</td>
+			         				<!--총 구매예정금액 표시-->
+			         				<fmt:formatNumber value="${sum}" pattern="#,###"/>
+			         			</span> 원</td>
 			         </tr>
 				</table><br><br>
 				
