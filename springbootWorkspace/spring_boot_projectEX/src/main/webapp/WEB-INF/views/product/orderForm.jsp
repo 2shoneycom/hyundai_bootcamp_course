@@ -26,9 +26,9 @@
 				<table border="1" width="800">
 					<tr>
 						<th>주문자</th>
-						<td width="200"></td>
+						<td width="200">${memDto.memName}</td>
 						<th>연락처</th>
-						<td></td>
+						<td>${hp1}-${hp2}-${hp3}</td>
 					</tr>
 				</table>
 				<br>
@@ -39,22 +39,22 @@
 					<tr>
 						<th>수령인</th>
 						<td width="200">
-							<input type="text" name="ordRcvReceiver" value="">
+							<input type="text" name="ordReceiver" value="${memDto.memName}">
 						</td>
 						<th>연락처</th>
 						<td>
-							<input type="text" name="hp1" value="" size="3">
-							- <input type="text" name="hp2" value="" size="4"> 
-							- <input type="text" name="hp3" value="" size="4">
+							<input type="text" name="hp1" value="${hp1}" size="3">
+							- <input type="text" name="hp2" value="${hp2}" size="4"> 
+							- <input type="text" name="hp3" value="${hp3}" size="4">
 						</td>
 					</tr>
 					<tr>
 						<th>배송지 주소</th>
 						<td colspan="3">
-							<input type="text" id="ordRcvZipcode" name="ordRcvZipcode" size="5" value="$" readonly> 
+							<input type="text" id="ordRcvZipcode" name="ordRcvZipcode" size="5" value="${memDto.memZipcode}" readonly> 
 							<input type="button" id="searchZipBtn" name="searchZipBtn" value="우편번호 찾기"><br> 
-							<input type="text" id="ordRcvAddress1" name="ordRcvAddress1" placeholder="주소 입력" size="70" value="" readonly><br> 
-							<input type="text" id="ordRcvAddress2" name="ordRcvAddress2" placeholder="상세 주소 입력" size="70" value="">
+							<input type="text" id="ordRcvAddress1" name="ordRcvAddress1" placeholder="주소 입력" size="70" value="${memDto.memAddress1}" readonly><br> 
+							<input type="text" id="ordRcvAddress2" name="ordRcvAddress2" placeholder="상세 주소 입력" size="70" value="${memDto.memAddress2}">
 						</td>
 					</tr>
 					<tr>
@@ -83,26 +83,32 @@
 					<c:forEach var="prd" items="${cartList}">
 						<tr>
 							<td>${prd.prdNo}</td>
-							<td><img src="<c:url value='/prd_images/${prd.prdImg}' />"
-								width="50" height="30"></td>
-							<td>${prd.prdName }</td>
-							<td align="right"><fmt:formatNumber value="${prd.prdPrice }"
-									pattern="#,###" /> 원</td>
-							<td><input type="text" class="cartQty" name="cartQty"
-								value="${prd.cartQty }" size="1" readonly> <input
-								type="hidden" name="cartNo" value="${prd.cartNo}"> <input
-								type="hidden" name="prdNo" value="${prd.prdNo}"></td>
-							<td align="right"><span class="amount"> <c:set
-										var="amount" value="${prd.prdPrice * prd.cartQty }" /> <c:set
-										var="sum" value="${sum + amount}" /> <fmt:formatNumber
-										value="${amount}" pattern="#,###" />
-							</span> 원</td>
+							<td>
+								<img src="<c:url value='/prd_images/${prd.prdImg}'/>" width="50" height="30">
+							</td>
+							<td>${prd.prdName}</td>
+							<td align="right">
+								<fmt:formatNumber value="${prd.prdPrice }" pattern="#,###" /> 원
+							</td>
+							<td>
+								<input type="text" class="cartQty" name="cartQty" value="${prd.cartQty }" size="1" readonly> 
+								<input type="hidden" name="cartNo" value="${prd.cartNo}"> 
+								<input type="hidden" name="prdNo" value="${prd.prdNo}">
+							</td>
+							<td align="right">
+								<span class="amount"> 
+									<c:set var="amount" value="${prd.prdPrice * prd.cartQty}"/> 
+									<c:set var="sum" value="${sum + amount}"/> 
+									<fmt:formatNumber value="${amount}" pattern="#,###"/>
+								</span> 원
+							</td>
 						</tr>
 					</c:forEach>
 					<tr>
 						<td colspan="5">총구매예정금액</td>
-						<td align="right"><fmt:formatNumber value="${sum}"
-								pattern="#,###" /> 원</td>
+						<td align="right">
+							<fmt:formatNumber value="${sum}" pattern="#,###" /> 원
+						</td>
 					</tr>
 				</table>
 				<br>
@@ -112,11 +118,13 @@
 				<table border="1" width="800">
 					<tr>
 						<th>결제 방법</th>
-						<td><input type="radio" name="ordPay" value="card">신용카드
-							<input type="radio" name="ordPay" value="bank">계좌이체</td>
+						<td>
+							<input type="radio" name="ordPay" value="card">신용카드
+							<input type="radio" name="ordPay" value="bank">계좌이체
+						</td>
 					</tr>
-				</table>
-				<br> <input type="submit" value="주문 완료">
+				</table><br> 
+				<input type="submit" value="주문 완료">
 			</form>
 			<br>
 		</section>

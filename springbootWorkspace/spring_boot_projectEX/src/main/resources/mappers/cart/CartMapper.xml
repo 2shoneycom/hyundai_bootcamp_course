@@ -49,5 +49,3 @@
 		WHERE cartNo=#{cartNo}
 	</update>
 </mapper>
-
-</mapper>

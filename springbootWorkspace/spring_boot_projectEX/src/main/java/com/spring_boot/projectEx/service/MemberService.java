@@ -25,8 +25,8 @@ public class MemberService implements IMemberService {
 	@Override
 	public String loginCheck(HashMap<String, Object> map) {
 		String encodedPwd = dao.loginCheck((String)map.get("id"));
-		String result = "fail";
 		String memPwd = (String)map.get("pwd");
+		String result = "fail";
 		if(encodedPwd != null && pwdEncoder.matches(memPwd, encodedPwd)) {
 			result="success";
 		}
@@ -47,4 +47,16 @@ public class MemberService implements IMemberService {
 		dao.insertMember(dto); // 암호화된 비밀번호가 저장됨
 	}
 
+	@Override
+	public void updateMember(MemberDTO dto) {
+		String encodedPwd = pwdEncoder.encode(dto.getMemPwd());
+		dto.setMemPwd(encodedPwd);
+		
+		dao.updateMember(dto);
+	}
+	
+	@Override
+	public void deleteMember(String id) {
+		dao.deleteMember(id);
+	}
 }

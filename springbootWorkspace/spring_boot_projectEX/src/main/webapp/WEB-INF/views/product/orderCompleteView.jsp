@@ -14,7 +14,8 @@
         	<c:import url="/WEB-INF/views/layout/top.jsp" />
 			<section>		
 				<h3>주문 완료</h3>
-				여기에 필요한 내용 적으면 됨
+				${ordNo} 주문이 완료되었습니다<br><br>
+				<button><a href="<c:url value='/order/orderListView'/>">주문 목록 보기</a></button>
 			</section> 
 		
 			<!--  bottom -->         

@@ -8,4 +8,6 @@ public interface IMemberService {
 	public String loginCheck(HashMap<String, Object> map);
 	public String idCheck(String id);
 	public void insertMember(MemberDTO dto); 
+	public void updateMember(MemberDTO dto);
+	public void deleteMember(String id);
 }

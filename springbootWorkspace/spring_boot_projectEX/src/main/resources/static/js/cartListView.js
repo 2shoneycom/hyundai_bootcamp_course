@@ -67,6 +67,6 @@ $(document).ready(function() {
 	// 연습문제 2 : cartList에서 수량변경하면 구매금액과 총 금액이 변경되도록 추가
 	$('.cartQty').on('change', function() {
 		let qty = $('.cartQty').val();
-		let price = $('.')
+		
 	});
 }); 

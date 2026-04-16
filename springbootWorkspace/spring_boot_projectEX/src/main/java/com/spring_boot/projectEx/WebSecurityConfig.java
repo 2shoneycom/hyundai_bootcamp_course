@@ -19,7 +19,7 @@ public class WebSecurityConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-	// 스프링 시큐리가 추가되면 동작하는 기본 기능들에 대해 설정을 진행(사용여부, 초기화 등)
+	// 스프링 시큐리티가 추가되면 동작하는 기본 기능들에 대해 설정을 진행(사용여부, 초기화 등)
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
