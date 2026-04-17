@@ -1,0 +1,19 @@
+package com.spring_boot_jpa_book.projectEx.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.spring_boot_jpa_book.projectEx.dto.BookDTO;
+
+@Service
+@Primary
+public class BookService implements IBookService {
+	@Autowired
+	BookServiceDataHandle bookServiceDataHandle;
+	
+	@Override
+	public ArrayList<BookDTO> listAllBook() {
+		return 
+	}
+}

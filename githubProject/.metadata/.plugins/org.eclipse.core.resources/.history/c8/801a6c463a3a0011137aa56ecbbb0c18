@@ -1,0 +1,28 @@
+package com.spring_boot_jpa_book.projectEx.entity;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+
+@Entity
+@Getter
+@Builder
+@NoArgsConstuctor
+@AllArgsConstructor
+@Table(name="book")
+public class BookEntity {
+	private String bookNo;
+	private String bookName;
+	private String bookAuthor;
+	private int bookPrice;
+	@DateTimeFormat(pattern="yyyy-MM-dd")
+	private Date bookDate;
+	private int bookStock;
+	private String pubNo;
+}

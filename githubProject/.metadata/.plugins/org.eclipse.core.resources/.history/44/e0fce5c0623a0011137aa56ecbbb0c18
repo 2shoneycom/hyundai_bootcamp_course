@@ -1,0 +1,13 @@
+package com.spring_boot_jpa_book.projectEx.service;
+
+import java.util.ArrayList;
+
+import com.spring_boot_jpa_book.projectEx.dto.BookDTO;
+
+public interface IBookService {
+	public ArrayList<BookDTO> listAllBook();
+	insertBook
+	updateBook
+	deleteBook
+	detailViewBook
+}

@@ -1,0 +1,17 @@
+package com.spring_boot_jpa_book.projectEx.entity;
+
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class BookEntity {
+
+	private String bookNo;
+	private String bookName;
+	private String bookAuthor;
+	private int bookPrice;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date bookDate;
+	private int bookStock;
+	private String pubNo;
+}

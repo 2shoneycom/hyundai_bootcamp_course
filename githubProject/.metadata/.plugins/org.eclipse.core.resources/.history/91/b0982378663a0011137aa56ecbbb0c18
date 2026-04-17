@@ -1,0 +1,61 @@
+package com.spring_boot_jpa_book.projectEx.dao;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Service;
+
+import com.spring_boot_jpa_book.projectEx.entity.BookEntity;
+import com.spring_boot_jpa_book.projectEx.repository.BookRepository;
+
+@Service
+@Primary
+public class BookDAO implements IBookDAO {
+	@Autowired
+	BookRepository bookRepo;
+
+	@Override
+	public ArrayList<BookEntity> listAllBook() {
+		return (ArrayList<BookEntity>)bookRepo.findAll();
+	}
+
+	@Override
+	public void insertBook(BookEntity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBook(BookEntity entity) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteBook(String bookNo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Optional<BookEntity> detailViewBook(String bookNo) {
+		// TODO Auto-generated method stub
+		return Optional.empty();
+	}
+
+	@Override
+	public String bookNoCheck(String bookNo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<BookEntity> bookSearch(HashMap<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
